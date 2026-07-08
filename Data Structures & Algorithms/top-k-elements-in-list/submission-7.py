@@ -1,0 +1,22 @@
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+
+        count_w = {}
+        res = []
+        freq = [[] for i in range(len(nums) + 1)]
+
+        for i in range(len(nums)):
+            count_w[nums[i]] = 1 + count_w.get(nums[i],0)
+
+        for num,cnt in count_w.items():
+            freq[cnt].append(num)
+        
+        print(freq)
+        
+        for i in range(len(freq) - 1, 0, -1):
+            for num in freq[i]:
+                res.append(num)
+                if len(res) == k:
+                    return res
+        
+        
